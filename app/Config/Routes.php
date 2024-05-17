@@ -5,4 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+$routes->get('/', 'RegisterControlador::index');  
+$routes->post('register', 'RegisterControlador::register');
+$routes->get('index', 'LoginControlador::index');
+//$routes->get()
