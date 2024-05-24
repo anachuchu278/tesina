@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Añadir Paciente</title>
+    <title><? if($id == 0){ echo "Añadir Paciente";} else{ echo "Editar". $pacientes['nombre'];}; ?></title>
 </head>
 <body>
     <form action="newPaciente" method="POST">

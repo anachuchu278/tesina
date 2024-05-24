@@ -24,16 +24,16 @@ class PacienteModel extends Model{
         $query = $this->db->table($this->table)->insert($data);
         return $query;
     }
-    public function getNameObra($id){
-        $query = $this->query('Select nombre from  obra_social where id = <?= $id ?>');
-    }
     public function getPaciente($id = false)
     {
         if ($id === false) {
-            // return $this->where('id_obra_social', $data['obras'['id']]);
             return $this->findAll() ? $this->findAll() : [];
         } else {
             return $this->where(['id' => $id])->first() ? $this->where(['id' => $id])->first() : [];
         }
+    }
+    public function editarPaciente($data){
+        $query = $this->db->table($this->table)->update($data);
+        return $query;
     }
 }

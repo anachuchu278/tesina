@@ -11,7 +11,7 @@ class PacienteControlador extends BaseController{
         $model = new PacienteModel();
         $obra = new ObraSModel();
         $data['pacientes'] = $model->findAll(); 
-        $data['obra'] = $obra->getNameObra($data['pacientes'['id']]);
+        // $data['obra'] = $obra->getNameObra($data['pacientes'['id']]);
         return view('crudPaciente', $data);
     }
     public function newVista(){//Vista donde se añade un paciente
@@ -21,7 +21,7 @@ class PacienteControlador extends BaseController{
         $data['obras'] = $obra->findAll();
         $data['usuarios'] = $usuario->findAll();
         $data['tiposans'] = $tiposan->findAll();
-        return view('newPaciente', $data);
+        return view('NewEditPaciente', $data);
     }
     public function new(){//Funcion que envia los datos a la BDD
         $paciente = new PacienteModel();
@@ -48,9 +48,9 @@ class PacienteControlador extends BaseController{
     }
     public function editView($id){
         $paciente = new PacienteModel;
-        $data['paciente'] = $paciente->getPaciente($id);
+        $data['pacientes'] = $paciente->getPaciente($id);
 
-        return view('editarPaciente', $data);
+        return view('NewEditPaciente', $data);
     }
     public function edit($id){
         $paciente = new PacienteModel;

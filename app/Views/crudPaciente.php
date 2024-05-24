@@ -18,6 +18,7 @@
                 <th>RH</th>
                 <th>Obra</th>
                 <th>Usuario</th>
+                <th>Editar</th>
             </tr>
         </thead>
         <tbody>
@@ -31,8 +32,10 @@
                     <td><?= $paciente['id_tipo_sangre']; ?></td>
                     <td><?= $paciente['RH_tipo_sangre']; ?></td>
                     <td><?= $paciente['id_obra']; ?></td>
-                    <td><?= $obra; ?></td>
                     <td><?= $paciente['id_usuario']; ?></td>
+                    <td>
+                        <a href="<?= site_url('editarPaciente/'. $paciente['id_Paciente']); ?>">Editar</a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
