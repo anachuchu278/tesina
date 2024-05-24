@@ -7,12 +7,14 @@ use App\Models\PacienteModel;
 use App\Models\ObraSModel;
 use App\Models\TipoSModel;
 class PacienteControlador extends BaseController{
-    public function index(){
-        $paciente = new PacienteModel();
-        $data['pacientes'] = $paciente->getPaciente(); 
-        echo view('crudPaciente', $data);
+    public function index(){ 
+        $model = new PacienteModel();
+        $obra = new ObraSModel();
+        $data['pacientes'] = $model->findAll(); 
+        $data['obra'] = $obra->getNameObra($data['pacientes'['id']]);
+        return view('crudPaciente', $data);
     }
-    public function newVista(){
+    public function newVista(){//Vista donde se añade un paciente
         $obra = new ObraSModel();
         $tiposan = new TipoSModel();
         $usuario = new UsuarioModelo();
@@ -21,26 +23,42 @@ class PacienteControlador extends BaseController{
         $data['tiposans'] = $tiposan->findAll();
         return view('newPaciente', $data);
     }
-    public function new(){
+    public function new(){//Funcion que envia los datos a la BDD
         $paciente = new PacienteModel();
-        $obra = new ObraSModel();
-        $tiposan = new TipoSModel();
-        $usuario = new UsuarioModelo();
         $data = [
-            'usuario' => $this->getPost('id_usuario'),
-            'nombre' => $this->getPost('nombre'),
-            'apellido' => $this->getPost('apellido'),
-            'id_obra' => $this->getPost('id_obra'),
-            'id_tipo_sangre' => $this->getPost('id_tipo_sangre'),
-            
+            'id_usuario' => $this->request->getPost('id_Usuario'),
+            'nombre' => $this->request->getPost('nombre'),
+            'apellido' => $this->request->getPost('apellido'),
+            'dni' => $this->request->getPost('dni'),
+            'edad' => $this->request->getPost('edad'),
+            'altura_cm' => $this->request->getPost('altura_cm'),
+            'peso' => $this->request->getPost('peso'),
+            'historia_clinica' => $this->request->getPost('historia_clinica'),
+            'id_obra' => $this->request->getPost('id_obra'),
+            'id_tipo_sangre' => $this->request->getPost('id_tipo_sangre')
         ];
         if (isset($_POST['rh'])) {
-            $data['rh'] = 1;
+            $data['RH_tipo_sangre'] = 1;
         }
         else {
-            $data['rh'] = 0;
+            $data['RH_tipo_sangre'] = 0;
         }
+        $paciente->insertarPaciente($data);
+        return redirect('')->to('crudPaciente');
+    }
+    public function editView($id){
+        $paciente = new PacienteModel;
+        $data['paciente'] = $paciente->getPaciente($id);
 
-        echo view('crudPaciente', $data);
+        return view('editarPaciente', $data);
+    }
+    public function edit($id){
+        $paciente = new PacienteModel;
+        $id = $paciente->getPaciente($id);
+        $data = [
+
+        ];
+        $paciente->editPaciente($id,$data);
+        return redirect('')->to('editPaciente');
     }
 }

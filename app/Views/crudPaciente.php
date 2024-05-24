@@ -9,17 +9,30 @@
     <table>
         <thead>
             <tr>
-                <th>ID</th>
+                <th>DNI</th>
                 <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Altura(cm)</th>
+                <th>Tipo de sangre</th>
+                <th>RH</th>
+                <th>Obra</th>
+                <th>Usuario</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($pacientes as $paciente): ?>
                 <tr>
+                    <td><?= $paciente['dni']; ?></td>
                     <td><?= $paciente['nombre']; ?></td>
                     <td><?= $paciente['apellido']; ?></td>
+                    <td><?= $paciente['edad']; ?></td>
+                    <td><?= $paciente['altura_cm']; ?></td>
+                    <td><?= $paciente['id_tipo_sangre']; ?></td>
+                    <td><?= $paciente['RH_tipo_sangre']; ?></td>
                     <td><?= $paciente['id_obra']; ?></td>
-                    <td><?= $paciente['apellido']; ?></td>
+                    <td><?= $obra; ?></td>
+                    <td><?= $paciente['id_usuario']; ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

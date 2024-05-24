@@ -8,23 +8,33 @@
 <body>
     <form action="newPaciente" method="POST">
         <label for="">Usuario:</label><br>
-        <select name="usuario" id="id_usuario" required>
+        <select name="id_Usuario" id="id_Usuario" required>
             <?php foreach ($usuarios as $usuario): ?> 
-                <option value=""><?= $usuario['nombre'] ?></option>
+                <option value="<?= $usuario['id_Usuario'] ?>"><?= $usuario['nombre'] ?></option>
             <?php endforeach; ?>
         </select> <br>
         <label for="">Nombre:</label><br>
         <input type="text" id="nombre" name="nombre" required><br>
         <label for="">Apellido:</label><br>
         <input type="text" id="apellido" name="apellido" required><br>
+        <label for="">DNI:</label><br>
+        <input type="number" name="dni" id="dni"><br>
+        <label for="">Edad:</label><br>
+        <input type="number" name="edad" id="edad"><br>
+        <label for="">Altura(cm):</label><br>
+        <input type="number" name="altura_cm" id="altura_cm"><br>
+        <label for="">Peso:</label><br>
+        <input type="number" name="peso" id="peso"><br>
+        <label for="">Historia clinica:</label><br>
+        <input type="number" name="historia_clinica" id="historia_clinica"><br>
         <label for="">Obra:</label><br>
-        <select name="obra" id="id_obra" name="id_obra" required>
+        <select  id="id_obra" name="id_obra" required>
             <?php foreach ($obras as $obra): ?> 
                 <option value="<?= $obra['id'] ?>"><?= $obra['nombre'] ?></option>
             <?php endforeach; ?>
         </select> <br>
         <label for="">Tipo de sangre:</label>
-        <select name="tiposan" id="id_tipo_sangre" required>
+        <select name="id_tipo_sangre" id="id_tipo_sangre" required>
             <?php foreach ($tiposans as $tiposan): ?> 
                 <option value="<?= $tiposan['id'] ?>"><?= $tiposan['tipo'] ?></option>
             <?php endforeach; ?>
