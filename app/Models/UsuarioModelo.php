@@ -6,8 +6,9 @@ use CodeIgniter\Model;
 class UsuarioModelo extends Model{
     protected $table      = 'usuario';
     
-    protected $primaryKey = 'id_usuario'; 
-
+<<
+    protected $primaryKey = 'id_Usuario'; 
+  
     protected $useAutoIncrement = true; 
 
     protected $allowedFields = ['nombre','password','email','id_rol','id_especialidad','id_horamed']; 
@@ -18,4 +19,22 @@ class UsuarioModelo extends Model{
         $this->db->table($this->table)-> insert($data);
         return redirect()->to('index');
     }
+<
+    
+    
+    
+    
+    
+    
+    
+    public function getUsuario($id = false)
+    {
+        if ($id === false) {
+            return $this->findAll() ? $this->findAll() : [];
+        } else {
+            return $this->where(['id' => $id])->first() ? $this->where(['id' => $id])->first() : [];
+        }
+    }
+=
+
 }
