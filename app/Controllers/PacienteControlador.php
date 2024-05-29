@@ -56,9 +56,24 @@ class PacienteControlador extends BaseController{
         $paciente = new PacienteModel;
         $id = $paciente->getPaciente($id);
         $data = [
-
+            'id_usuario' => $this->request->getPost('id_Usuario'),
+            'nombre' => $this->request->getPost('nombre'),
+            'apellido' => $this->request->getPost('apellido'),
+            'dni' => $this->request->getPost('dni'),
+            'edad' => $this->request->getPost('edad'),
+            'altura_cm' => $this->request->getPost('altura_cm'),
+            'peso' => $this->request->getPost('peso'),
+            'historia_clinica' => $this->request->getPost('historia_clinica'),
+            'id_obra' => $this->request->getPost('id_obra'),
+            'id_tipo_sangre' => $this->request->getPost('id_tipo_sangre')
         ];
         $paciente->editPaciente($id,$data);
         return redirect('')->to('editPaciente');
+    }
+    public function delete($id)
+    {
+    $paciente = new PacienteModel();
+    $paciente->deletePaciente($id); 
+    return redirect()->to('crudPaciente');
     }
 }

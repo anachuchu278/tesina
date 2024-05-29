@@ -19,6 +19,7 @@
                 <th>Obra</th>
                 <th>Usuario</th>
                 <th>Editar</th>
+                <th>Eliminar</th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +36,7 @@
                     <td><?= $paciente['id_usuario']; ?></td>
                     <td>
                         <a href="<?= site_url('editarPaciente/'. $paciente['id_Paciente']); ?>">Editar</a>
+                        <a href="<?= site_url('eliminarPaciente/'. $paciente['id_Paciente']); ?>">Eliminar</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
