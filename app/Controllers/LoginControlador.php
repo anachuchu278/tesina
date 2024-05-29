@@ -6,6 +6,6 @@ use App\Models\UsuarioModelo;
 
 class LoginControlador extends Controller{
     public function index(){
-        return view('loginVIsta');
+        return redirect('')->to('crudPaciente');
     }
 }

@@ -6,7 +6,6 @@ use CodeIgniter\Model;
 class UsuarioModelo extends Model{
     protected $table      = 'usuario';
     
-<<
     protected $primaryKey = 'id_Usuario'; 
   
     protected $useAutoIncrement = true; 
@@ -19,7 +18,7 @@ class UsuarioModelo extends Model{
         $this->db->table($this->table)-> insert($data);
         return redirect()->to('index');
     }
-<
+
     
     
     
@@ -35,6 +34,6 @@ class UsuarioModelo extends Model{
             return $this->where(['id' => $id])->first() ? $this->where(['id' => $id])->first() : [];
         }
     }
-=
+
 
 }
