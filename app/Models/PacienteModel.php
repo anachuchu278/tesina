@@ -35,12 +35,12 @@ class PacienteModel extends Model{
     public function editarPaciente($data){
         $query = $this->db->table($this->table)->update($data);
         return $query;
-    }public function updatePaciente($data, $id)
+    }
+    public function updatePaciente($data, $id)
     {
         $query = $this->db->table($this->table)->update($data, array('id' => $id));
         return $query;
     }
-    
         public function deletePaciente($id)
     {
         $query = $this->db->table($this->table)->delete(array('id' => $id));
