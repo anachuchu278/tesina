@@ -74,6 +74,6 @@ class PacienteControlador extends BaseController{
     {
     $paciente = new PacienteModel();
     $paciente->deletePaciente($id); 
-    return redirect('')->to('crudPaciente');
+    return view('crudPaciente');
     }
 }
