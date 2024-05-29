@@ -6,6 +6,7 @@
     <title>Registro de pacientes</title>
 </head>
 <body>
+    <!-- TODO Añadir navbar -->
     <table>
         <thead>
             <tr>
@@ -42,6 +43,6 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-    <a href="newPaciente">Añadir</a>
+    <a href="newPacienteView">Añadir</a>
 </body>
 </html>
