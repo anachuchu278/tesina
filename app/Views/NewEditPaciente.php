@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Añadir Paciente</title>
+    <title><?= isset($paciente['id']) ? "Editar". $paciente['nombre'] : "Añadir Paciente" ?></title>
+    <!-- arreglar titulo -->
 </head>
 <body>
-    <form action="newPaciente" method="POST">
+    <form action="<?= isset($paciente['id_Paciente']) ? base_url('editarPaciente/' . $paciente['id_Paciente']) : base_url('newPaciente') ?>" method="POST"> 
         <label for="">Usuario:</label><br>
         <select name="id_Usuario" id="id_Usuario" required>
             <?php foreach ($usuarios as $usuario): ?> 
@@ -14,7 +15,7 @@
             <?php endforeach; ?>
         </select> <br>
         <label for="">Nombre:</label><br>
-        <input type="text" id="nombre" name="nombre" required><br>
+        <input type="text" id="nombre" name="nombre" value="<?= isset($paciente['nombre']) ? $paciente['nombre'] : '' ?>" required><br>
         <label for="">Apellido:</label><br>
         <input type="text" id="apellido" name="apellido" required><br>
         <label for="">DNI:</label><br>

@@ -31,12 +31,12 @@
                     <td><?= $paciente['apellido']; ?></td>
                     <td><?= $paciente['edad']; ?></td>
                     <td><?= $paciente['altura_cm']; ?></td>
-                    <td><?= $paciente['id_tipo_sangre']; ?></td>
+                    <td><?= $paciente['tipo_sangre']; ?></td>
                     <td><?= $paciente['RH_tipo_sangre']; ?></td>
-                    <td><?= $paciente['id_obra']; ?></td>
-                    <td><?= $paciente['id_usuario']; ?></td>
+                    <td><?= $paciente['obra']; ?></td>
+                    <td><?= $paciente['usuario']; ?></td>
                     <td>
-                        <a href="<?= site_url('editarPaciente/'. $paciente['id_Paciente']); ?>">Editar</a>
+                        <a href="<?= site_url('editPaciente/'. $paciente['id_Paciente']); ?>">Editar</a>
                         <a href="<?= site_url('eliminarPaciente/'. $paciente['id_Paciente']); ?>">Eliminar</a>
                     </td>
                 </tr>

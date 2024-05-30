@@ -8,11 +8,28 @@ use App\Models\ObraSModel;
 use App\Models\TipoSModel;
 class PacienteControlador extends BaseController{
     public function index(){ 
-        $model = new PacienteModel();
+        $usuario = new UsuarioModelo();
         $obra = new ObraSModel();
-        $data['pacientes'] = $model->findAll(); 
-        // $data['obra'] = $obra->getNameObra($data['pacientes'['id']]);
-        return view('crudPaciente', $data);
+        $tiposan = new TipoSModel();
+        $model = new PacienteModel();
+        $pacientes = $model->findAll(); 
+        foreach ($pacientes as &$paciente) { // Obtener el nombre en lugar de las IDs    
+            $tipoSangre = $tiposan->find($paciente['id_tipo_sangre']);
+            $paciente['tipo_sangre'] = $tipoSangre['tipo'];
+
+            $obra = $obra->find($paciente['id_obra']);
+            $paciente['obra'] = $obra['nombre'];
+
+            $usuario = $usuario->find($paciente['id_usuario']);
+            $paciente['usuario'] = $usuario['email'];
+
+            if ($paciente['RH_tipo_sangre'] == '1') {
+                $paciente['RH_tipo_sangre'] = '+';
+            } else {
+                $paciente['RH_tipo_sangre'] = '-';
+            }
+        }
+        return view('crudPaciente', ['pacientes' => $pacientes]);
     }
     public function newVista(){//Vista donde se añade un paciente
         $obra = new ObraSModel();
@@ -47,6 +64,12 @@ class PacienteControlador extends BaseController{
         return redirect('')->to('crudPaciente');
     }
     public function editView($id){
+        $obra = new ObraSModel();
+        $tiposan = new TipoSModel();
+        $usuario = new UsuarioModelo();
+        $data['obras'] = $obra->findAll();
+        $data['usuarios'] = $usuario->findAll();
+        $data['tiposans'] = $tiposan->findAll();
         $paciente = new PacienteModel;
         $data['pacientes'] = $paciente->getPaciente($id);
 
