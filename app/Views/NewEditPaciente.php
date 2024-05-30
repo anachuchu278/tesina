@@ -11,7 +11,9 @@
         <label for="">Usuario:</label><br>
         <select name="id_Usuario" id="id_Usuario" required>
             <?php foreach ($usuarios as $usuario): ?> 
-                <option value="<?= $usuario['id_Usuario'] ?>"><?= $usuario['nombre'] ?></option>
+                <?php if ($usuario['nombre'] !== 'admin') :?>
+                    <option value="<?= $usuario['id_Usuario'] ?>"><?= $usuario['nombre'] ?></option>
+                <?php endif;?>
             <?php endforeach; ?>
         </select> <br>
         <label for="">Nombre:</label><br>

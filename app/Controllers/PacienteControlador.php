@@ -13,15 +13,16 @@ class PacienteControlador extends BaseController{
         $tiposan = new TipoSModel();
         $model = new PacienteModel();
         $pacientes = $model->findAll(); 
-        foreach ($pacientes as &$paciente) { // Obtener el nombre en lugar de las IDs    
-            $tipoSangre = $tiposan->find($paciente['id_tipo_sangre']);
-            $paciente['tipo_sangre'] = $tipoSangre['tipo'];
+        // TODO arreglar en find
+        foreach ($pacientes as $paciente) { // Obtener el nombre en lugar de las IDs    
+            // $tipoSangre = $tiposan->find($paciente['id_tipo_sangre']);
+            // $paciente['tipo_sangre'] = $tipoSangre['tipo'];
 
-            $obra = $obra->find($paciente['id_obra']);
-            $paciente['obra'] = $obra['nombre'];
+            // $obra = $obra->find($paciente['id_obra']);
+            // $paciente['obra'] = $obra['nombre'];
 
-            $usuario = $usuario->find($paciente['id_usuario']);
-            $paciente['usuario'] = $usuario['email'];
+            // $usuario = $usuario->find($paciente['id_usuario']);
+            // $paciente['usuario'] = $usuario['email'];
 
             if ($paciente['RH_tipo_sangre'] == '1') {
                 $paciente['RH_tipo_sangre'] = '+';
@@ -61,7 +62,7 @@ class PacienteControlador extends BaseController{
             $data['RH_tipo_sangre'] = 0;
         }
         $paciente->insertarPaciente($data);
-        return redirect('')->to('crudPaciente');
+        return redirect()->to('crudPaciente');
     }
     public function editView($id){
         $obra = new ObraSModel();
@@ -91,12 +92,12 @@ class PacienteControlador extends BaseController{
             'id_tipo_sangre' => $this->request->getPost('id_tipo_sangre')
         ];
         $paciente->editPaciente($id,$data);
-        return redirect('')->to('editPaciente');
+        return redirect()->to('editPaciente');
     }
     public function delete($id)
     {
     $paciente = new PacienteModel();
     $paciente->deletePaciente($id); 
-    return view('crudPaciente');
+    return redirect()->to('crudPaciente');
     }
 }
