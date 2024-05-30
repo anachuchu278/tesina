@@ -16,7 +16,7 @@ $data = [
         $email = $this->request->getPost('email'), 
         $password = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT) 
 ];
-        $datosmodel->insertData($data); 
+        $UsuarioModelo->insertData($data); 
         return redirect()->to(base_url('login'));
         
         
