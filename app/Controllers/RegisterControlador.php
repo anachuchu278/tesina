@@ -22,10 +22,8 @@ class RegisterControlador extends Controller{
             'password'=>$password, 
             'id_rol'=>$id_rol
         ]; 
- 
-        $UsuarioModelo->insertData($data);  
-       
 
+        $UsuarioModelo->insertData($data);  
         return view('LoginVista');
     }
 } 

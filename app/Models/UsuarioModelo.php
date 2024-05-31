@@ -18,14 +18,6 @@ class UsuarioModelo extends Model{
         $this->db->table($this->table)-> insert($data);
         return redirect()->to('index');
     }
-
-    
-    
-    
-    
-    
-    
-    
     public function getUsuario($id = false)
     {
         if ($id === false) {

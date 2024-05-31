@@ -13,10 +13,11 @@ class PacienteControlador extends BaseController{
         $tiposan = new TipoSModel();
         $model = new PacienteModel();
         $pacientes = $model->findAll(); 
+        $tipoSangre = $tiposan->findAll();
         // TODO arreglar en find
-        foreach ($pacientes as $paciente) { // Obtener el nombre en lugar de las IDs    
-            // $tipoSangre = $tiposan->find($paciente['id_tipo_sangre']);
-            // $paciente['tipo_sangre'] = $tipoSangre['tipo'];
+        foreach ($pacientes as $paciente) { // Obtener el nombre en lugar de las IDs   
+            $tipoSangre = $tiposan->find($paciente['id_tipo_sangre']);
+            $paciente['tipo_sangre'] = $tipoSangre['tipo'];
 
             // $obra = $obra->find($paciente['id_obra']);
             // $paciente['obra'] = $obra['nombre'];
@@ -30,6 +31,7 @@ class PacienteControlador extends BaseController{
                 $paciente['RH_tipo_sangre'] = '-';
             }
         }
+        echo view('layout/navbar.php');
         return view('crudPaciente', ['pacientes' => $pacientes]);
     }
     public function newVista(){//Vista donde se añade un paciente
