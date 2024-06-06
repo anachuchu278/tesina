@@ -3,7 +3,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller; 
 use App\Models\UsuarioModelo;
-class LoginControlador extends Controller{ 
+class LoginControlador extends BaseController{ 
     public function index(){
         return view('LoginVista'); 
     }
@@ -20,6 +20,9 @@ class LoginControlador extends Controller{
             if(password_verify($password, $user['password'])){
                 $session->set('id_Usuario',$user['id_Usuario']); 
                 return redirect()->to('crudPaciente');
+            }
+            else {
+                return redirect()->back();
             }
         }
         

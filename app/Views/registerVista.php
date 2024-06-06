@@ -21,7 +21,7 @@
             
             <button type="submit" href="<?= base_url('register') ?>">Registrarse</button>
         </form><br>
-        <button href="<?= base_url('loginVista') ?>" >Login</button>
+        <a href="loginVista" >loguearse</a>
     </div>
 </body>
 </html>

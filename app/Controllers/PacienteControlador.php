@@ -16,20 +16,21 @@ class PacienteControlador extends BaseController{
         $tipoSangre = $tiposan->findAll();
         // TODO arreglar en find
         foreach ($pacientes as $paciente) { // Obtener el nombre en lugar de las IDs   
-            $tipoSangre = $tiposan->find($paciente['id_tipo_sangre']);
-            $paciente['tipo_sangre'] = $tipoSangre['tipo'];
-
+            // $tiposan = $tiposan->find($paciente['id_tipo_sangre']);
+            // $paciente['tipo_sangre'] = $tiposan['tipo'];
+            
             // $obra = $obra->find($paciente['id_obra']);
             // $paciente['obra'] = $obra['nombre'];
-
+            
             // $usuario = $usuario->find($paciente['id_usuario']);
             // $paciente['usuario'] = $usuario['email'];
-
+            
             if ($paciente['RH_tipo_sangre'] == '1') {
                 $paciente['RH_tipo_sangre'] = '+';
             } else {
                 $paciente['RH_tipo_sangre'] = '-';
             }
+
         }
         echo view('layout/navbar.php');
         return view('crudPaciente', ['pacientes' => $pacientes]);

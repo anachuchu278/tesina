@@ -22,4 +22,5 @@ $routes->post('login1', 'LoginControlador::loguearse'); //Loguea
 $routes->get('loginVista','LoginControlador::index');
 // $routes->get('test', 'LoginControlador::loguearse');
 //Turnos
-$routes->get('turnos', 'TurnoControlador::index');
+$routes->get('turnos', 'TurnoControlador::index'); // Pagina principal con turnos del usuario
+$routes->get('newTurno', 'TurnoControlador::newVista'); // Vista para añadir nuevos turnos

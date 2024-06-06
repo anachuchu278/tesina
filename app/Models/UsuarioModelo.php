@@ -23,9 +23,11 @@ class UsuarioModelo extends Model{
         if ($id === false) {
             return $this->findAll() ? $this->findAll() : [];
         } else {
-            return $this->where(['id' => $id])->first() ? $this->where(['id' => $id])->first() : [];
+            return $this->where(['id_Usuario' => $id])->first() ? $this->where(['id_Usuario' => $id])->first() : [];
         }
     }
-
-
+    public function getMedicos()
+    {
+        
+    }
 }
