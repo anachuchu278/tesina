@@ -35,7 +35,7 @@
     <?php endif; ?>
     </table>
     <div class="box-new">
-        <button class="new" href="newTurno">Pedir Turno</button>
+        <a href="newTurno"><button class="new" >Pedir Turno</button></a>
     </div>
 </body>
 </html>

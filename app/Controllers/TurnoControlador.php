@@ -25,7 +25,7 @@ class TurnoControlador extends Controller{
             $data['usuario'] = $user;
             $data['turnos'] = $turnos;
             
-            // echo view('layout/navbar.css');
+            echo view('layout/navbar.php');
             return view('turnoVista.php', $data);
         } else {
             // Usuario no logueado, redirige a la página de inicio de sesión u otra página
@@ -43,6 +43,7 @@ class TurnoControlador extends Controller{
             $user = $pacienteModel->getPaciente($userId);
             
             $data['usuario'] = $user;
+            echo view('layout/navbar.php');
             return view('TurnoNew.php', $data);
         } else {
             return redirect()->to('register');
