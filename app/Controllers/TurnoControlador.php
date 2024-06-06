@@ -7,7 +7,9 @@ use App\Models\PacienteModel;
 use App\Models\UsuarioModelo;
 use App\Models\PagoModel;
 use App\Models\EstadoModel;
+use Dompdf\Dompdf;
 class TurnoControlador extends Controller{
+    
     public function index(){
         $session = \Config\Services::session();
         if ($session->get('id_Usuario')) {
