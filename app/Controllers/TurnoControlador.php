@@ -9,7 +9,6 @@ use App\Models\PagoModel;
 use App\Models\EstadoModel;
 use Dompdf\Dompdf;
 class TurnoControlador extends Controller{
-    
     public function index(){
         $session = \Config\Services::session();
         if ($session->get('id_Usuario')) {
@@ -65,6 +64,20 @@ class TurnoControlador extends Controller{
         } else {
             // Usuario no logueado, redirige a la página de inicio de sesión u otra página
             return redirect()->to('register');
+        }
+    }
+    public function PDF($id){
+        $turnoModelo = new TurnoModel();
+        $turno = $turnoModelo->getTurno($id);
+        if ($turno) {
+            $data['turno'] = $turno; 
+            $dompdf = new Dompdf();
+            $dompdf->loadHTML(view('layout/turno-pdf', $data));
+            $dompdf->setPaper('A4', 'portrait');
+            $dompdf->render();
+            $dompdf->stream();
+        } else {
+            echo "El turno no se encontró."; 
         }
     }
 }
