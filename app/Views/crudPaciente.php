@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="<?= base_url('css/crud.css')?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de pacientes</title>
 </head>
 <body>
+    <!-- TODO Añadir navbar -->
     <table>
         <thead>
             <tr>
@@ -18,7 +20,7 @@
                 <th>RH</th>
                 <th>Obra</th>
                 <th>Usuario</th>
-                <th>Editar</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -34,12 +36,15 @@
                     <td><?= $paciente['id_obra']; ?></td>
                     <td><?= $paciente['id_usuario']; ?></td>
                     <td>
-                        <a href="<?= site_url('editarPaciente/'. $paciente['id_Paciente']); ?>">Editar</a>
+                        <a class="editar" href="<?= site_url('editPaciente/'. $paciente['id_Paciente']); ?>">Editar</a>
+                        <a class="delete" href="<?= site_url('eliminarPaciente/'. $paciente['id_Paciente']); ?>">Eliminar</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-    <a href="newPaciente">Añadir</a>
+    <div class="box-new">
+        <a class="new" href="newPacienteView">Añadir</a><br>
+    </div>
 </body>
 </html>
