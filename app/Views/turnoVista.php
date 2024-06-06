@@ -26,6 +26,7 @@
                     <td>
                         <a href="<?= site_url('editarTurno/'. $turno['id_Turno']);?>">Reprogramar Turno</a>
                         <a href="<?= site_url('cancelarTurno/'. $turno['id_Turno']);?>">Cancelar Turno</a>
+                        <a href="<?= site_url('PDFTurno/'. $turno['id_Turno']);?>">Descargar PDF</a>
                     </td>
                 </tr>
             <?php endforeach;?>
