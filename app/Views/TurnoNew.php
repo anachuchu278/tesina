@@ -7,7 +7,7 @@
 </head>
 <body>
     <form action="newTurno" method="POST">
-        <input type="hidden" value="<?= $idPaciente = "";?>">
+        <input type="hidden" value="<?= $userId ?>">
     </form>
 </body>
 </html>

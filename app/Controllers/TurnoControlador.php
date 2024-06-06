@@ -38,7 +38,12 @@ class TurnoControlador extends Controller{
             $turnoModel = new TurnoModel();
             $pacienteModel = new PacienteModel();
             $usuarioModel = new UsuarioModelo();
+            $userId = $session->get('id_Usuario');
             // $usuario = $usuarioModel->getMedicos();
+            $user = $pacienteModel->getPaciente($userId);
+            
+            $data['usuario'] = $user;
+            return view('TurnoNew.php', $data);
         } else {
             return redirect()->to('register');
         }
