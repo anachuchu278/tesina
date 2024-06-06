@@ -42,10 +42,14 @@ class TurnoModel extends Model{
         $query = $this->db->table($this->table)->delete(array('id_Turno' => $id));
         return $query;
     } 
-    public function getTurnosPorPaciente($userId)
-    {
-        return $this->where('id_paciente', $userId)->findAll();
+    public function getTurnosPorPaciente($pacienteId) {
+        $builder = $this->db->table('turno');
+        $builder->select('turno.*, usuario.id_especialidad');
+        $builder->join('usuario', 'turno.id_usuario = usuario.id_Usuario');
+        $builder->where('turno.id_paciente', $pacienteId);
+        return $builder->get()->getResult();
     }
+
     public function getEstado($idEstado){
         return $this->where('id_estado',$idEstado)->findAll();
     }
