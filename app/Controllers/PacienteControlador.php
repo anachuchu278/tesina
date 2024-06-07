@@ -8,6 +8,7 @@ use App\Models\ObraSModel;
 use App\Models\TipoSModel;
 class PacienteControlador extends BaseController{
     public function index(){ 
+        $session = \Config\Services::session(); 
         $usuario = new UsuarioModelo();
         $obra = new ObraSModel();
         $tiposan = new TipoSModel();
@@ -30,10 +31,15 @@ class PacienteControlador extends BaseController{
             } else {
                 $paciente['RH_tipo_sangre'] = '-';
             }
-
         }
-        echo view('layout/navbar.php');
-        return view('crudPaciente', ['pacientes' => $pacientes]);
+        $userRol = $session->get('user_id_rol');  
+        if ($userRol == 2) {
+            $data['showAdmin'] = true;
+        } else {
+            $data['showAdmin'] = false;
+        }
+        echo view('layout/navbar.php', $data);
+        return view('crudPaciente', ['pacientes' => $pacientes], $data['showAdmin']);
     }
     public function newVista(){//Vista donde se añade un paciente
         $obra = new ObraSModel();

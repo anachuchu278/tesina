@@ -32,6 +32,11 @@ class PacienteModel extends Model{
             return $this->where(['id_Paciente' => $id])->first() ? $this->where(['id_Paciente' => $id])->first() : [];
         }
     }
+    public function getPacientePorUsuarioID($id)
+    {
+        $query = $this->db->table($this->table)->where(['id_usuario' => $id])->first() ? $this->where(['id_usuario' => $id])->first() : [];
+        return $query;
+    }
     public function editarPaciente($data){
         $query = $this->db->table($this->table)->update($data);
         return $query;

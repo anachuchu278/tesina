@@ -18,13 +18,13 @@ class LoginControlador extends BaseController{
         
         if($user){
             if(password_verify($password, $user['password'])){
-                $session->set('id_Usuario',$user['id_Usuario']); 
+                $session->set('user_rol', $user['id_rol']);
+                $session->set('user_id', $user['id_Usuario']); 
                 return redirect()->to('crudPaciente');
             }
             else {
                 return redirect()->back();
             }
         }
-        
     }
 }

@@ -44,9 +44,10 @@ class TurnoModel extends Model{
     } 
     public function getTurnosPorPaciente($pacienteId) {
         $builder = $this->db->table('turno');
-        $builder->select('turno.*, usuario.id_especialidad');
+        $builder->select('turno.*, especialidad.tipo', 'usuario.email');
         $builder->join('usuario', 'turno.id_usuario = usuario.id_Usuario');
-        $builder->where('turno.id_paciente', $pacienteId);
+        $builder->join('especialidad', 'especialidad.id = usuario.id_especialidad');
+        $builder->where('turno.id_usuario', $pacienteId);
         return $builder->get()->getResult();
     }
 

@@ -20,9 +20,8 @@
         <tbody>
             <?php foreach ($turnos as $turno) :?>
                 <tr>
-                    <td><?= $turno->fecha_hora;?></td>
-                    <td><?= $turno->id_usuario;?></td>
-                    <td><?= $turno->especialidad;?></td>
+                    <td><?= $turno['fecha_hora'];?></td>
+                    <td><?= $turno['id_usuario'];?></td>
                     <td>
                         <a href="<?= site_url('editarTurno/'. $turno->id_Turno);?>">Reprogramar Turno</a>
                         <a href="<?= site_url('cancelarTurno/'. $turno->id_Turno);?>">Cancelar Turno</a>

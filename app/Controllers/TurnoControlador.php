@@ -8,45 +8,42 @@ use App\Models\UsuarioModelo;
 use App\Models\PagoModel;
 use App\Models\EstadoModel;
 use Dompdf\Dompdf;
-class TurnoControlador extends Controller{
-    // En el controlador
-
-public function index(){
-    $session = \Config\Services::session();
-    if ($session->get('id_Usuario')) {
-        $turnoModel = new TurnoModel();
-        $pacienteModel = new PacienteModel();
-        $usuarioModel = new UsuarioModelo();
-        $estadoModel = new EstadoModel();
-        
-        $userId = $session->get('id_Usuario');
-        $user = $pacienteModel->find($userId);
-        
-        $turnos = $turnoModel->getTurnosPorPaciente($userId);
-        
-        // Cargar la información de especialidad para cada usuario en los turnos
-        foreach ($turnos as $turno) {
-            $usuario = $usuarioModel->find($turno->id_usuario);
-            $turno->especialidad = $usuario->especialidad;
-        }
-        $data['usuario'] = $user;
-        $data['turnos'] = $turnos;
-        
-        echo view('layout/navbar.php');
-        return view('turnoVista.php', $data);
-    } else {
-        // Usuario no logueado, redirige a la página de inicio de sesión u otra página
-        return redirect()->to('/');
-    }
-}
-
-    public function newVista(){
+class TurnoControlador extends BaseController{
+    public function index(){
         $session = \Config\Services::session();
-        if ($session->get('id_Usuario')) {
+        if ($session->get('user_id')) {
             $turnoModel = new TurnoModel();
             $pacienteModel = new PacienteModel();
             $usuarioModel = new UsuarioModelo();
-            $userId = $session->get('id_Usuario');
+            // $estadoModel = new EstadoModel();
+            
+            $userId = $session->get('user_id');
+            $user = $pacienteModel->find($userId);
+            
+            $turnos = $turnoModel->getTurnosPorPaciente($userId);
+            
+            // Cargar la información de especialidad para cada usuario en los turnos
+            // foreach ($turnos as $turno) {
+            //     $usuario = $usuarioModel->find($turno['id_usuario']);
+            //     $turno['id_especialidad'] = $usuario->especialidad;
+            // }
+            $data['usuario'] = $user;
+            $data['turnos'] = $turnos;
+            
+            echo view('layout/navbar.php');
+            return view('turnoVista.php', $data);
+        } else {
+            // Usuario no logueado, redirige a la página de inicio de sesión u otra página
+            return redirect()->to('/');
+        }
+    }
+    public function newVista(){ // Vista para agendar un turno
+        $session = \Config\Services::session();
+        if ($session->get('user_id')) {
+            $turnoModel = new TurnoModel();
+            $pacienteModel = new PacienteModel();
+            $usuarioModel = new UsuarioModelo();
+            $userId = $session->get('user_id');
             // $usuario = $usuarioModel->getMedicos();
             $user = $pacienteModel->getPaciente($userId);
             
@@ -57,20 +54,27 @@ public function index(){
             return redirect()->to('/');
         }
     }
-    public function new(){
+    public function new(){ // Guardar datos del nuevo turno
         $session = \Config\Services::session();
-        if ($session->get('id_Usuario')) {
+        if ($session->get('user_id')) {
             $turnoModel = new TurnoModel();
             $pacienteModel = new PacienteModel();
             $usuarioModel = new UsuarioModelo();
-
+            // TODO Revisar como añadir el id_pago  -!- Cambiar relacion id_turno -> tabla Pago, no id_pago ->Tabla Turno
+            $id = $session->get('user_id');
+            $idPaciente = $pacienteModel->getPacientePorUsuarioID($id);
+            $codigoturno = rand(1, 999999);
             $data = [
-                'id_paciente' => $this->request->getPost('id_paciente'),
+                'fecha_hora' => $this->request->getPost('fecha_hora'),
+                'codigo turno' => $codigoturno,
+                'id_usuario' => $this->request->getPost('medico'),
+                'id_paciente' => $idPaciente,
+                'id_estado' => 1
             ];
         
         } else {
             // Usuario no logueado, redirige a la página de inicio de sesión u otra página
-            return redirect()->to('register');
+            return redirect()->to('/');
         }
     }
     public function PDF($id){ 
