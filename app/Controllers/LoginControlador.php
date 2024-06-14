@@ -5,7 +5,7 @@ use CodeIgniter\Controller;
 use App\Models\UsuarioModelo;
 class LoginControlador extends BaseController{ 
     public function index(){
-        return view('LoginVista'); 
+        return view('loginVista'); 
     }
     public function loguearse(){
         $session = \Config\Services::session();
