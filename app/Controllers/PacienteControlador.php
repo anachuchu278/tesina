@@ -39,7 +39,7 @@ class PacienteControlador extends BaseController{
             $data['showAdmin'] = false;
         }
         echo view('layout/navbar.php', $data);
-        return view('crudPaciente', ['pacientes' => $pacientes], $data['showAdmin']);
+        return view('crudPaciente', ['pacientes' => $pacientes], $data);
     }
     public function newVista(){//Vista donde se añade un paciente
         $obra = new ObraSModel();
