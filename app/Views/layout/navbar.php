@@ -3,7 +3,7 @@
 </head>
 <nav class="navbar">
     <div class="navbar-logo">
-        <img src="img/logo.png" alt="Logo">
+        <img src="public/img/logo.png" alt="Logo">
     </div>
     <ul class="navbar-menu">
         <li><a href="/">Inicio</a></li>
