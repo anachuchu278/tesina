@@ -24,6 +24,6 @@ class RegisterControlador extends Controller{
         ]; 
 
         $UsuarioModelo->insertData($data);  
-        return view('LoginVista');
+        return view('loginVista');
     }
 } 
