@@ -9,15 +9,21 @@
 <body>
 <div class="login-form">
         <h2>Iniciar sesión</h2>
-        <form method="post" action="login1">
-            <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="email" placeholder="Introduce tu correo electrónico" required><br>
-            
-            <label for="password">Contraseña</label>
-            <input type="password" id="password" name="password" placeholder="Introduce tu contraseña" required><br>
-            
-            <button type="submit">Iniciar sesión</button>
-        </form>
+        <?php if (session()->getFlashdata('error')): ?>
+			<div class="alert alert-danger">
+				<?= session()->getFlashdata('error') ?>
+			</div>
+		<?php endif; ?>
+        <form action="<?= base_url('login1') ?>" method="POST">
+			<label for="email">Email:</label>
+			<input type="email" id="email" name="email" required>
+			
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="password" required>
+
+			<input type="submit" value="Login">
+		</form>	
+
     </div>
 </body>
 </html>
