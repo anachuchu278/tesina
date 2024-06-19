@@ -26,6 +26,11 @@ class UsuarioModelo extends Model{
             return $this->where(['id_Usuario' => $id])->first() ? $this->where(['id_Usuario' => $id])->first() : [];
         }
     }
+    public function editarUsuario($data)
+    {
+        $query = $this->db->table($this->table)->update($data);
+        return $query;
+    }
     public function getMedicos()
     {
         
