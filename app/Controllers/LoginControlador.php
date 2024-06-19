@@ -36,4 +36,10 @@ class LoginControlador extends BaseController{
             return redirect()->back()->with('error', 'Usuario no encontrado.');
         }
     }
+    public function logout()
+    {
+        $session = \Config\Services::session();
+        $this->session->destroy(); //Funciona pero da warning
+        return redirect()->to('');
+    }
 }
